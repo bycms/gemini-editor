@@ -1,5 +1,5 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
-const markdownIt = require('markdown-it');
+import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "/@google/generative-ai";
+import MarkdownIt from '/markdown-it';
 
 let API_KEY = "AIzaSyBmVYOrJrwN0l4cODZOW7NwXl8ysg-kl8E";
 let form = document.querySelector('form');
