@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+</head>
+
+<body>
+  <main>
+    <h1>Gemini API</h1>
+    <textarea id="myTextarea" rows="15" cols="210"></textarea>
+    <div id="floatingBox">
+      <form>
+        <div class="prompt-box">
+          <label>
+            <input name="prompt" placeholder="Enter instructions here" type="text">
+          </label>
+          <button type="submit">Edit with Gemini</button>
+          <button type="button" class="cancel">Off</button>
+        </div>
+      </form>
+    </div>
+    <p class="output"></p>
+  </main>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
