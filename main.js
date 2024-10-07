@@ -1,6 +1,5 @@
-import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
+import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "/@google/generative-ai";
 import MarkdownIt from 'markdown-it';
-import './style.css';
 
 let API_KEY = "AIzaSyBmVYOrJrwN0l4cODZOW7NwXl8ysg-kl8E";
 let form = document.querySelector('form');
