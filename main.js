@@ -33,7 +33,7 @@ form.onsubmit = async (ev) => {
     const result = await model.generateContentStream(prompt);
     // Read from the stream and interpret the output as markdown
     let buffer = [];
-    let md = new MarkdownIt();
+    let md = new markdownIt();
     let html;
     for await (let response of result.stream) {
       buffer.push(response.text());
