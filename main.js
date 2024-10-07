@@ -2,6 +2,7 @@ import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/ge
 import MarkdownIt from 'markdown-it';
 import './style.css';
 
+let API_KEY = "AIzaSyBmVYOrJrwN0l4cODZOW7NwXl8ysg-kl8E";
 let form = document.querySelector('form');
 let promptInput = document.querySelector('input[name="prompt"]');
 let output = document.querySelector('.output');
@@ -15,7 +16,7 @@ form.onsubmit = async (ev) => {
 
   try {
     // Call the model, and get a stream of results
-    const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+    const genAI = new GoogleGenerativeAI(API_KEY);
     const model = genAI.getGenerativeModel({
       model: "gemini-1.5-flash",
       safetySettings: [
