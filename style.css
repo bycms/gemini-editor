@@ -84,10 +84,11 @@ button {
 button:focus-visible {
   outline: 2px solid white;
   outline-offset: -4px;
+  opacity: 0.9;
 }
 
 button:hover {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 #myTextarea {
