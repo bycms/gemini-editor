@@ -10,8 +10,9 @@ let textarea = document.getElementById('myTextarea');
 let floatingBox = document.getElementById('floatingBox');
 let selectedText;
 
-form.onsubmit =()=> callAI();
-async function callAI() {
+form.onsubmit =()=> callAI(ev);
+async function callAI(ev) {
+  ev.preventDefault();
   output.textContent = 'Generating...';
 
   try {
