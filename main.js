@@ -15,16 +15,11 @@ form.onsubmit = async (ev) => {
   output.textContent = 'Generating...';
 
   try {
-    const genAI = new GoogleGenerativeAI(API_KEY);
+    const genAI = GoogleGenerativeAI(API_KEY);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const chat = model.startChat({
-      history: [
-      {
-        role: "model",
-        parts: [{ text: "Sure! Let's start." }]
-      },
-      ],
+      history: [],
     });
     // Assemble the prompt
 
