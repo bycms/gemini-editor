@@ -1,4 +1,4 @@
-const GoogleGenerativeAI = require('@google/generative-ai');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const MarkdownIt = require('markdown-it');
 
 let API_KEY = "AIzaSyBmVYOrJrwN0l4cODZOW7NwXl8ysg-kl8E";
