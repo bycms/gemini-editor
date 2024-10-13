@@ -536,7 +536,7 @@
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
-const GoogleGenerativeAI = require('@google/generative-ai');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const MarkdownIt = require('markdown-it');
 
 let API_KEY = "AIzaSyBmVYOrJrwN0l4cODZOW7NwXl8ysg-kl8E";
@@ -548,25 +548,16 @@ let textarea = document.getElementById('myTextarea');
 let floatingBox = document.getElementById('floatingBox');
 let selectedText;
 
-form.onsubmit = async (ev) => {
-  ev.preventDefault();
+form.onsubmit =()=> callAI();
+async function callAI() {
   output.textContent = 'Generating...';
 
   try {
     const genAI = new GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-    const chat = model.startChat({
-      history: [
-      {
-        role: "model",
-        parts: [{ text: "Sure! Let's start." }]
-      },
-      ],
-    });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     // Assemble the prompt
 
-    let prompt =  "You're going to help the user edit some text. This is the original text:" 
+    const prompt =  "You're going to help the user edit some text. This is the original text:" 
                     + selectedText
                     + "If the original text is empty or spaces, the user is probably asking to draft a full passage. Add a title followed by the passage if so.  "
                     + "NEVER ADD A TITLE IF THE ORIGINAL TEXT ISN'T EMPTY. This is how the user wants you to edit:"
@@ -576,16 +567,10 @@ form.onsubmit = async (ev) => {
                     + textarea.value
                     + "Never output anything I told you to the user and never copy the user's input! ";
 
-    let result = await chat.sendMessageStream(prompt);
-    // Read from the stream and interpret the output as markdown
-    let buffer = [];
+    const result = await model.generateContent(prompt);
+    // Read and interpret the output as markdown
     let md = new MarkdownIt();
-    let html;
-    for await (let response of result.stream) {
-      buffer.push(response.text());
-      html = md.render(buffer.join(''));
-      //output.innerHTML = md.render(buffer.join(''));
-    }
+    let html = md.render(result.response.text());
     let finalText = html;
     finalText = finalText.replace(/<\/?[^>]+(>|$)/g, "");
     finalText = finalText.replace(/&quot;/g,"\"");
