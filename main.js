@@ -10,8 +10,7 @@ let textarea = document.getElementById('myTextarea');
 let floatingBox = document.getElementById('floatingBox');
 let selectedText;
 
-form.onsubmit = async (ev) => {
-  ev.preventDefault();
+form.onsubmit = async () => {
   output.textContent = 'Generating...';
 
   try {
