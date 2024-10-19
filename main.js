@@ -9,7 +9,15 @@ let textarea = document.getElementById('myTextarea');
 let floatingBox = document.getElementById('floatingBox');
 let selectedText = '';  // Initialize the outer scoped selectedText
 
-send.onclick = async (ev) => {
+send.onclick = call();
+
+document.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && event.key === 'Enter') {
+      call();
+  }
+});
+
+async function call(ev) {
   ev.preventDefault();
   output.textContent = 'Generating...';
 
