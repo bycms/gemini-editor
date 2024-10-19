@@ -39,7 +39,7 @@ h1::before {
   background-size: cover;
 }
 
-form {
+.form {
   margin: 0;
 }
 
