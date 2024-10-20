@@ -13,7 +13,7 @@ send.onclick = call();
 
 document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.key === 'Enter') {
-      call();
+      send.click();
   }
 });
 
@@ -50,10 +50,13 @@ async function call(ev) {
     finalText = finalText.replace(/&quot;/g,"\"");
     textarea.value = textarea.value.replace(selectedText, finalText);
     promptInput.value = '';
+    output.textContent = 'Done.'
   } catch (e) {
     output.innerHTML += '<hr>' + e;
   }
 };
+
+//
 
 document.addEventListener('mouseup', function() {
     // Update the global selectedText variable

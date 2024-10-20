@@ -66,11 +66,12 @@ button {
   padding: 8px 10px;
   font-family: unset;
   font-size: 16px;
+  opacity: 0.8;
 }
 
 input:hover {
   border-color: rgb(123, 138, 206);
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 button {
@@ -99,7 +100,8 @@ button:hover {
   top: 20px;
   border-radius: 15px;
   z-index: 1;
-  height: 60%;
+  height: 700px;
+  width: calc(100% - 380px);
 }
 
 #floatingBox {
