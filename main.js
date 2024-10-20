@@ -9,25 +9,8 @@ let textarea = document.getElementById('myTextarea');
 let floatingBox = document.getElementById('floatingBox');
 let selectedText = '';  // Initialize the outer scoped selectedText
 
-send.onclick = call();
-
-document.addEventListener('keydown', function(event) {
-  if (event.ctrlKey && event.key === 'Enter') {
-      send.click();
-  }
-});
-
-async function call(ev) {
-  ev.preventDefault();
-  output.textContent = 'Generating...';
-
-  try {
-    const genAI = new GoogleGenerativeAI("AIzaSyBmVYOrJrwN0l4cODZOW7NwXl8ysg-kl8E");
-    const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash"
-    });
-
-    const prompt =  "You're going to help the user edit some text. This is the original text:" 
+send.onclick = function() {
+  let prompt = "You're going to help the user edit some text. This is the original text:" 
                     + selectedText
                     + "If the original text is empty or spaces, the user is probably asking to draft a full passage. Add a title followed by the passage if so.  "
                     + "NEVER ADD A TITLE IF THE ORIGINAL TEXT ISN'T EMPTY. This is how the user wants you to edit:"
@@ -36,6 +19,26 @@ async function call(ev) {
                     + "As a reference, here's the whole original passage(which may be empty):"
                     + textarea.value
                     + "Never output anything above and never copy the user's input! ";
+  
+  call(prompt);
+};
+
+document.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && event.key === 'Enter') {
+      send.click();
+  }
+});
+
+async function call(content) {
+  output.textContent = 'Generating...';
+
+  try {
+    const genAI = new GoogleGenerativeAI("AIzaSyBmVYOrJrwN0l4cODZOW7NwXl8ysg-kl8E");
+    const model = genAI.getGenerativeModel({
+      model: "gemini-1.5-flash"
+    });
+
+    const prompt =  content;
 
     const result = await model.generateContentStream(prompt);
     let buffer = [];
